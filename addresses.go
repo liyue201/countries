@@ -10,7 +10,7 @@ func FormatAddress(line1, line2, zip, city, state, cc string) string {
 	var a string
 	switch cc {
 	case "NO", "SE":
-		a = fmt.Sprintf("%s\n%s\n%s %s\n%s", line1, line2, zip, city, Country(cc))
+		a = fmt.Sprintf("%s\n%s %s\n%s", line1, zip, city, Country(cc))
 	default:
 		a = fmt.Sprintf("%s\n%s\n%s\n%s\n%s\n%s", line1, line2, zip, city, state, Country(cc))
 	}
