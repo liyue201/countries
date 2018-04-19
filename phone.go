@@ -1,6 +1,7 @@
 package countries
 
 var prefix = make(map[string]string)
+var prefixReflex = make(map[string]string)
 
 const (
 	i262 = "262"
@@ -259,6 +260,10 @@ func init() {
 	prefix["ZA"] = "27"
 	prefix["ZM"] = "260"
 	prefix["ZW"] = "263"
+
+	for k, v := range prefix {
+		prefixReflex[v] = k
+	}
 }
 
 // PhonePrefix returns a phone prefix for a country code (uppercase).
@@ -268,4 +273,13 @@ func PhonePrefix(code string) string {
 		return "<unknown>"
 	}
 	return "+" + p
+}
+
+// CountryCode returns a country code (uppercase) for a phone prefix.
+func CountryCode(prefix string) string {
+	p, ok := prefixReflex[prefix]
+	if !ok {
+		return "<unknown>"
+	}
+	return p
 }
